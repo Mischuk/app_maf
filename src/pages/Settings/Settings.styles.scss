@@ -1,0 +1,48 @@
+.Settings {
+    color: black;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+
+    &__row {
+        padding-top: 32px;
+        padding-bottom: 32px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    &__action {
+        height: 75px;
+
+        button {
+            display: flex;
+            height: 75px;
+            width: 100%;
+            background: #ed2e2e;
+            color: #fff;
+            font-size: 32px;
+            outline: none;
+            border: none;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        padding-bottom: 12px;
+        font-size: 24px;
+    }
+
+    &__roles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .Checkbox {
+            margin-left: 12px;
+            margin-bottom: 24px;
+            margin-right: 12px;
+        }
+    }
+}

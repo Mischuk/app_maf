@@ -1,0 +1,19 @@
+.Checkbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(black, .3);
+    border-radius: 46px;
+    padding: 0 24px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    transition: all 500ms ease-in-out;
+
+    &.is-checked {
+        background: rgba(#ed2e2e, .75);
+        border-color: rgba(#ed2e2e, .75);
+    }
+}

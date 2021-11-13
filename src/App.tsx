@@ -1,18 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { PlayerRoles } from "@pages/PlayerRoles/PlayerRoles";
+import { Results } from "@pages/Results/Results";
+import { Settings } from "@pages/Settings/Settings";
+import { GameStep, RolesEnum } from "@utils/enums";
+import { shuffle } from "@utils/helpers";
+import { useEffect, useState } from "react";
+import "./App.styles.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
+export const App = () => {
+    const [step, setStep] = useState<GameStep>(GameStep.Settings);
+    const [selectedRoles, setSelectedRoles] = useState<RolesEnum[]>([]);
 
-        </p>
-      </header>
-    </div>
-  );
-}
+    const onSubmitSettings = (roles: RolesEnum[]) => {
+        setSelectedRoles(shuffle(roles));
+        setStep(GameStep.Roles);
+    };
 
-export default App;
+    const onShowResult = () => {
+        setStep(GameStep.Final);
+    };
+
+    useEffect(() => {
+        const html = document.documentElement;
+
+        if (step === GameStep.Roles) {
+            html.classList.add("is-fixed");
+        } else {
+            html.classList.remove("is-fixed");
+        }
+    }, [step]);
+
+    return (
+        <div className="App">
+            {step === GameStep.Settings && (
+                <Settings onSubmit={onSubmitSettings} />
+            )}
+            {step === GameStep.Roles && (
+                <PlayerRoles
+                    roles={selectedRoles}
+                    onShowResult={onShowResult}
+                />
+            )}
+            {step === GameStep.Final && (
+                <Results roles={selectedRoles} />
+            )}
+        </div>
+    );
+};
