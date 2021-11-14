@@ -31,7 +31,9 @@ export const App = () => {
 
     return (
         <div className="App">
-            {step === GameStep.Settings && (
+            <Settings onSubmit={onSubmitSettings} />
+
+            {/* {step === GameStep.Settings && (
                 <Settings onSubmit={onSubmitSettings} />
             )}
             {step === GameStep.Roles && (
@@ -42,7 +44,7 @@ export const App = () => {
             )}
             {step === GameStep.Final && (
                 <Results roles={selectedRoles} />
-            )}
+            )} */}
         </div>
     );
 };

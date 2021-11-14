@@ -21,10 +21,5 @@ export const ACTIVE_ROLES: iActiveRole[] = [
         id: 3,
         title: RolesEnum.Immortal,
         cardImage: ""
-    },
-    {
-        id: 4,
-        title: RolesEnum.Sheriff,
-        cardImage: ""
     }
 ];

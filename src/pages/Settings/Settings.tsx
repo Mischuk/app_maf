@@ -26,6 +26,7 @@ interface iProps {
 export const Settings: FC<iProps> = ({ onSubmit }) => {
     const [config, setConfig] = useState<iGameConfig>(DEFAULT_CONFIG);
     const [isActiveRolesDisabled, setIsActiveRolesDisabled] = useState(false);
+    const [isTotalLocked, setIsTotalLocked] = useState(false);
 
     const updateConfig = <T extends keyof iGameConfig>(field: T, value: iGameConfig[T]) => {
         setConfig(prevCfg => ({ ...prevCfg, [field]: value }));
@@ -94,20 +95,32 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
 
     return (
         <div className="Settings">
-            <div className="Settings__content">
-                <div className="Settings__row">
-                    <InputNumeric
-                        label="Всего игроков"
-                        value={config.totalPlayers}
-                        min={3}
-                        onChange={onChangeTotalPlayers}
-                    />
+            {!isTotalLocked && (
+                <div className="Settings__wrapper">
+                    <div className="Settings__total">
+                        <InputNumeric
+                            label="TOTAL PLAYERS"
+                            value={config.totalPlayers}
+                            min={3}
+                            onChange={onChangeTotalPlayers}
+                        />
+
+                        <div className="Settings__next">
+                            <div className="Settings__button-next" onClick={() => setIsTotalLocked(true)}>NEXT</div>
+                        </div>
+                    </div>
+
+                    <div className="Settings__description">
+                        <span>Описание ролей</span>
+                    </div>
                 </div>
-                <div className="Settings__row">
-                    <div>
+            )}
+            {isTotalLocked && (
+                <div className="Settings__content">
+                    <div className="Settings__row">
                         <div>
                             <InputNumeric
-                                label="кол-во мирных"
+                                label="Peace"
                                 value={config.citizens}
                                 min={0}
                                 onChange={onChangeTotalCitizens}
@@ -135,29 +148,29 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
                             />
                         </div>
                     </div>
-                </div>
 
-                {!isActiveRolesDisabled && (
-                    <div className="Settings__row">
-                        <div className="Settings__title">Активные роли</div>
-                        <div className="Settings__roles">
-                            {ACTIVE_ROLES.map(role => (
-                                <Checkbox
-                                    onChange={() => onChangeActiveRoles(role)}
-                                    label={role.title}
-                                    key={role.id}
-                                    isChecked={
-                                        !!config.activeRoles.find(item => item.id === role.id)
-                                    }
-                                />
-                            ))}
+                    {/* {!isActiveRolesDisabled && (
+                        <div className="Settings__row">
+                            <div className="Settings__title">Активные роли</div>
+                            <div className="Settings__roles">
+                                {ACTIVE_ROLES.map(role => (
+                                    <Checkbox
+                                        onChange={() => onChangeActiveRoles(role)}
+                                        label={role.title}
+                                        key={role.id}
+                                        isChecked={
+                                            !!config.activeRoles.find(item => item.id === role.id)
+                                        }
+                                    />
+                                ))}
+                            </div>
+                            <div className="Settings__action">
+                                <button onClick={handleSubmitSettings}>ОК</button>
+                            </div>
                         </div>
-                    </div>
-                )}
-            </div>
-            <div className="Settings__action">
-                <button onClick={handleSubmitSettings}>ОК</button>
-            </div>
+                    )} */}
+                </div>
+            )}
         </div>
     );
 };

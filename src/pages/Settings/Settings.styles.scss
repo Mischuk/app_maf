@@ -1,26 +1,30 @@
 .Settings {
-    color: black;
+    @import "@styles";
+
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: auto;
+    touch-action: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &__row {
-        padding-top: 32px;
-        padding-bottom: 32px;
-        padding-left: 24px;
-        padding-right: 24px;
+        padding: size(32px) size(24px);
     }
 
     &__action {
-        height: 75px;
+        height: size(75px);
 
         button {
             display: flex;
-            height: 75px;
+            height: size(75px);
             width: 100%;
             background: #ed2e2e;
             color: #fff;
-            font-size: 32px;
+            font-size: size(32px);
             outline: none;
             border: none;
             align-items: center;
@@ -30,19 +34,45 @@
 
     &__title {
         text-align: center;
-        padding-bottom: 12px;
-        font-size: 24px;
+        padding-bottom: size(12px);
+        font-size: size(24px);
     }
 
     &__roles {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
 
-        .Checkbox {
-            margin-left: 12px;
-            margin-bottom: 24px;
-            margin-right: 12px;
+    &__total {
+        background: rgba($black, .8);
+        padding: size(24px);
+        border-radius: size(24px);
+        box-shadow: 1px 2px 4px rgba(black, .6);
+    }
+
+    &__next {
+        margin-top: size(24px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__button-next {
+        background: rgba($red, .9);
+        padding: size(24px) size(48px);
+        border-radius: size(24px);
+        text-shadow: none;
+    }
+
+    &__description {
+        font-weight: 800;
+        margin-top: size(16px);
+        font-size: size(16px);
+
+        span {
+            display: inline-flex;
+            padding: size(12px);
         }
     }
 }
