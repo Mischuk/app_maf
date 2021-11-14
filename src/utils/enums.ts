@@ -11,7 +11,7 @@ export enum RolesEnum {
     Immortal = "Бессмертный",
     Comissar = "Комиссар",
     Maniac = "Маньяк",
-    Reanymator = "Реаниматор (вместо доктора)",
+    Reanymator = "Реаниматор",
     Whore = "Проститутка",
     Judge = "Судья"
 }

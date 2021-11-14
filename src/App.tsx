@@ -19,22 +19,17 @@ export const App = () => {
         setStep(GameStep.Final);
     };
 
-    useEffect(() => {
-        const html = document.documentElement;
-
-        if (step === GameStep.Roles) {
-            html.classList.add("is-fixed");
-        } else {
-            html.classList.remove("is-fixed");
-        }
-    }, [step]);
+    const handleReset = () => {
+        setStep(GameStep.Settings);
+        setSelectedRoles([]);
+    }
 
     return (
         <div className="App">
             <div className="App__orientation">ROTATE <br/><br/>DEVICE</div>
-            <Settings onSubmit={onSubmitSettings} />
 
-            {/* {step === GameStep.Settings && (
+
+           {step === GameStep.Settings && (
                 <Settings onSubmit={onSubmitSettings} />
             )}
             {step === GameStep.Roles && (
@@ -44,8 +39,8 @@ export const App = () => {
                 />
             )}
             {step === GameStep.Final && (
-                <Results roles={selectedRoles} />
-            )} */}
+                <Results roles={selectedRoles} reset={handleReset} />
+            )}
         </div>
     );
 };

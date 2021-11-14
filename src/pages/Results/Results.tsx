@@ -3,12 +3,15 @@ import "./Results.styles.scss";
 
 interface iProps {
     roles: string[];
+    reset: () => void;
 }
 
-export const Results: FC<iProps> = ({ roles }) => {
+export const Results: FC<iProps> = ({ roles, reset }) => {
     const [isVisible, setIsVisible] = useState(false);
     return (
         <div className="Results">
+            <br/>
+            <br/>
             <div className="Results__toggle" onClick={() => setIsVisible(!isVisible)}>
                 {isVisible ? "Hide" : "Show"} all roles
             </div>
@@ -23,6 +26,11 @@ export const Results: FC<iProps> = ({ roles }) => {
                     })}
                 </div>
             )}
+
+            <br/>
+            <br/>
+
+            <button onClick={reset}>RESET</button>
         </div>
     );
 };

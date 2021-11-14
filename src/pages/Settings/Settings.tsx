@@ -25,9 +25,9 @@ interface iProps {
 
 export const Settings: FC<iProps> = ({ onSubmit }) => {
     const [config, setConfig] = useState<iGameConfig>(DEFAULT_CONFIG);
-    console.log(`config: `, config);
     const [isActiveRolesDisabled, setIsActiveRolesDisabled] = useState(false);
     const [isTotalLocked, setIsTotalLocked] = useState(false);
+    const [isInfoOpen, setIsInfoOpen] = useState(false);
 
     const updateConfig = <T extends keyof iGameConfig>(field: T, value: iGameConfig[T]) => {
         setConfig(prevCfg => ({ ...prevCfg, [field]: value }));
@@ -153,7 +153,7 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
 
                     {!isActiveRolesDisabled && (
                         <div className="Settings__row">
-                            <div className="Settings__title">Активные роли <div className="Settings__title-info">?</div></div>
+                            <div className="Settings__title">Активные роли <div className="Settings__title-info" onClick={() => setIsInfoOpen(true)}>?</div></div>
                             <div className="Settings__roles">
                                 {ACTIVE_ROLES.map(role => {
                                     const isDoctor = role.title === RolesEnum.Doctor;
@@ -176,6 +176,19 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
                             </div>
                         </div>
                     )}
+                </div>
+            )}
+            {isInfoOpen && (
+                <div className="Settings__info">
+                    <div className="Settings__info-close" onClick={() => setIsInfoOpen(false)}>x</div>
+                    <div className="Settings__info-list">
+                        {ACTIVE_ROLES.map(role => {
+                            return <div className="Settings__info-item">
+                                <div className="Settings__info-item-title">{role.title}</div>
+                                <div className="Settings__info-item-desc">{role.desc}</div>
+                            </div>
+                        })}
+                    </div>
                 </div>
             )}
         </div>

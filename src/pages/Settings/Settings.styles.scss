@@ -101,4 +101,63 @@
             font-size: size(32px);
         }
     }
+
+    &__info {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 8888;
+        width: 100%;
+        height: 100%;
+        background: $black;
+        color: $white;
+        overflow: auto;
+
+        &-close {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: size(60px);
+            height: size(60px);
+            font-size: size(36px);
+            background: $red;
+            color: $white;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            justify-content: center;
+        }
+
+        &-list {
+            padding-right: size(75px);
+            padding-left: size(25px);
+            padding-top: size(25px);
+        }
+
+        &-item {
+            margin-bottom: size(75px);
+            border-bottom: 1px solid $white;
+            padding-bottom: size(75px);
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            &-title {
+                font-size: size(40px);
+                font-weight: 900;
+                margin-bottom: size(30px);
+                text-align: left;
+            }
+
+            &-desc {
+                line-height: 1.6;
+                text-align: left;
+                font-weight: 400;
+                font-size: size(14px);
+                letter-spacing: 0;
+            }
+        }
+    }
 }
