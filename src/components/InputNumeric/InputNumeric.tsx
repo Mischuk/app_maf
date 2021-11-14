@@ -1,4 +1,5 @@
 import { FC } from "react";
+import cn from "classnames";
 import "./InputNumeric.styles.scss";
 
 interface iProps {
@@ -9,15 +10,15 @@ interface iProps {
     label?: string;
     min?: number;
     max?: number;
+    className?: string;
 }
 
-export const InputNumeric: FC<iProps> = ({ value, onChange, isDisabledDec, isDisabledInc, label, min, max }) => {
+export const InputNumeric: FC<iProps> = ({ value, onChange, isDisabledDec, isDisabledInc, label, min, max, className = "" }) => {
     const handleChange = (step: number) => {
         onChange(value + step);
     };
-
     return (
-        <div className="InputNumeric">
+        <div className={cn("InputNumeric", className)}>
             {label && <div className="InputNumeric__label">{label}</div>}
 
             <div className="InputNumeric__control">

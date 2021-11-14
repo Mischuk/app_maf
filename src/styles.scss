@@ -6,5 +6,5 @@ $red: #EE6C4D;
 $black: #293241;
 
 @function size($size) {
-    @return ($size / 500px) * 100vh;
+    @return ($size / 460px) * 100vh;
 }

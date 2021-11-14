@@ -25,6 +25,7 @@ interface iProps {
 
 export const Settings: FC<iProps> = ({ onSubmit }) => {
     const [config, setConfig] = useState<iGameConfig>(DEFAULT_CONFIG);
+    console.log(`config: `, config);
     const [isActiveRolesDisabled, setIsActiveRolesDisabled] = useState(false);
     const [isTotalLocked, setIsTotalLocked] = useState(false);
 
@@ -110,17 +111,16 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
                         </div>
                     </div>
 
-                    <div className="Settings__description">
-                        <span>Описание ролей</span>
-                    </div>
+
                 </div>
             )}
+
             {isTotalLocked && (
                 <div className="Settings__content">
                     <div className="Settings__row">
                         <div>
                             <InputNumeric
-                                label="Peace"
+                                label="Всего мирных"
                                 value={config.citizens}
                                 min={0}
                                 onChange={onChangeTotalCitizens}
@@ -131,13 +131,14 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
                                 isDisabledDec={
                                     config.citizens + config.activeRoles.length <= config.mafias
                                 }
+                                className="is-columns"
                             />
                         </div>
                         <br />
                         <br />
                         <div>
                             <InputNumeric
-                                label="кол-во мафий"
+                                label="Всего мафий"
                                 value={config.mafias}
                                 min={1}
                                 isDisabledInc={
@@ -145,30 +146,36 @@ export const Settings: FC<iProps> = ({ onSubmit }) => {
                                     config.citizens === 0
                                 }
                                 onChange={onChangeTotalMafias}
+                                className="is-columns"
                             />
                         </div>
                     </div>
 
-                    {/* {!isActiveRolesDisabled && (
+                    {!isActiveRolesDisabled && (
                         <div className="Settings__row">
-                            <div className="Settings__title">Активные роли</div>
+                            <div className="Settings__title">Активные роли <div className="Settings__title-info">?</div></div>
                             <div className="Settings__roles">
-                                {ACTIVE_ROLES.map(role => (
-                                    <Checkbox
-                                        onChange={() => onChangeActiveRoles(role)}
-                                        label={role.title}
-                                        key={role.id}
-                                        isChecked={
-                                            !!config.activeRoles.find(item => item.id === role.id)
-                                        }
-                                    />
-                                ))}
+                                {ACTIVE_ROLES.map(role => {
+                                    const isDoctor = role.title === RolesEnum.Doctor;
+                                    const isReanymator = role.title === RolesEnum.Reanymator;
+                                    const isDisabled = (isDoctor && config.activeRoles.find(item => item.title === RolesEnum.Reanymator)) || (isReanymator && config.activeRoles.find(item => item.title === RolesEnum.Doctor)) ? true : false;
+                                    const isChecked = !!config.activeRoles.find(item => item.id === role.id);
+                                    return (
+                                        <Checkbox
+                                            onChange={() => onChangeActiveRoles(role)}
+                                            label={role.title}
+                                            key={role.id}
+                                            isChecked={isChecked}
+                                            isDisabled={isDisabled || (config.totalPlayers - config.activeRoles.length < 3 && !isChecked)}
+                                        />
+                                    )
+                                })}
                             </div>
                             <div className="Settings__action">
-                                <button onClick={handleSubmitSettings}>ОК</button>
+                                <button onClick={handleSubmitSettings}>GO</button>
                             </div>
                         </div>
-                    )} */}
+                    )}
                 </div>
             )}
         </div>

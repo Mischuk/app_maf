@@ -31,6 +31,7 @@ export const App = () => {
 
     return (
         <div className="App">
+            <div className="App__orientation">ROTATE <br/><br/>DEVICE</div>
             <Settings onSubmit={onSubmitSettings} />
 
             {/* {step === GameStep.Settings && (

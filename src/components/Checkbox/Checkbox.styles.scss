@@ -1,19 +1,33 @@
 .Checkbox {
-    position: relative;
+    @import "@styles";
+    $root: &;
+
     display: flex;
     align-items: center;
-    border: 1px solid rgba(black, .3);
-    border-radius: 46px;
-    padding: 0 24px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75px;
-    transition: all 500ms ease-in-out;
+    margin-bottom: size(24px);
+    font-size: size(24px);
+    font-weight: 600;
+    padding: size(12px) 0;
+
+    &__icon {
+        $size: size(40px);
+        width: $size;
+        height: $size;
+        border: 2px solid $light;
+        border-radius: size(12px);
+        margin-right: size(12px);
+    }
+
+    &.is-disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 
     &.is-checked {
-        background: rgba(#ed2e2e, .75);
-        border-color: rgba(#ed2e2e, .75);
+
+        #{$root}__icon {
+            background: $red;
+            border-color: $black;
+        }
     }
 }

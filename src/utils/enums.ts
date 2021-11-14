@@ -5,11 +5,13 @@ export enum GameStep {
 }
 
 export enum RolesEnum {
-    Citizen = "Citizen",
-    Mafia = "Mafia",
-    Whore = "Whote",
-    Doctor = "Doctor",
-    Immortal = "BESSMERTNYI",
-    Comissar = "KOMISAR",
-    Judge = "Judge"
+    Citizen = "Мирный житель",
+    Mafia = "Мафия",
+    Doctor = "Доктор",
+    Immortal = "Бессмертный",
+    Comissar = "Комиссар",
+    Maniac = "Маньяк",
+    Reanymator = "Реаниматор (вместо доктора)",
+    Whore = "Проститутка",
+    Judge = "Судья"
 }

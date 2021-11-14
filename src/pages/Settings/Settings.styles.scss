@@ -13,35 +13,38 @@
 
     &__row {
         padding: size(32px) size(24px);
-    }
 
-    &__action {
-        height: size(75px);
-
-        button {
-            display: flex;
-            height: size(75px);
-            width: 100%;
-            background: #ed2e2e;
-            color: #fff;
-            font-size: size(32px);
-            outline: none;
-            border: none;
-            align-items: center;
-            justify-content: center;
+        & + & {
+            border-top: 1px solid $black;
         }
     }
 
     &__title {
         text-align: center;
-        padding-bottom: size(12px);
-        font-size: size(24px);
+        padding-bottom: size(24px);
+        font-size: size(32px);
+        font-weight: 900;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-info {
+            border: size(4px) solid $light;
+            width: size(50px);
+            height: size(50px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: size(24px);
+        }
     }
 
     &__roles {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     &__total {
@@ -73,6 +76,29 @@
         span {
             display: inline-flex;
             padding: size(12px);
+        }
+    }
+
+    &__content {
+        height: 100%;
+        overflow: auto;
+        width: 100%;
+    }
+
+    &__action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            background: rgba($red, .9);
+            padding: size(24px) size(48px);
+            border-radius: size(24px);
+            text-shadow: none;
+            border: none;
+            color: $white;
+            font-weight: 700;
+            font-size: size(32px);
         }
     }
 }
